@@ -1,13 +1,32 @@
 import Head from 'next/head'
 import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
+import styles from '../styles/Layout.module.css'
 
-export default function Home({ titles }) {
-  console.log('titles', titles )
+
+export default function Home({ animes }) {
+  console.log('animes', animes )
   return (
     <div>
       <Head>
         <title>Anime List</title>
       </Head>
+      <main className={styles.main}>
+        <h1 className={styles.title}>
+          Check out some of my favorite anime
+        </h1>
+
+        <div className={styles.grid}>
+          {animes.map(anime => {
+            return (
+              <a className={styles.card}>
+                <h2>{ anime.title.native }</h2>
+                <p>{ anime.title.english }</p>
+              </a>
+            )
+          })}
+
+        </div>
+      </main>
     </div>
   )
 }
@@ -49,7 +68,7 @@ export const getStaticProps = async () => {
 
   return {
     props: {
-      titles: data.Page.media
+      animes: data.Page.media
     }
   }
 }
