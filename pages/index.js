@@ -4,7 +4,6 @@ import styles from '../styles/Layout.module.css'
 
 
 export default function Home({ animes }) {
-  console.log('animes', animes )
   return (
     <div>
       <Head>
@@ -63,8 +62,6 @@ export const getStaticProps = async () => {
       perPage: 10
     }
   })
-
-  console.log('data', data)
 
   return {
     props: {
